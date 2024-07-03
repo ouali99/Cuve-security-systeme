@@ -86,8 +86,7 @@ class SevenSeg :
     @PD.setter
     def PD(self,pd) :
         self.__pd = pd
-
-
+    
     #Méthode pour afficher un chiffre 0
     def Show0(self):
         if self.__type == True:
@@ -427,6 +426,25 @@ class SevenSeg :
             self.__se.off()
             self.__sf.off()
             self.__sg.off()
+
+    #Methode pour etteindre tout les segements
+    def Clear(self):
+        if self.__type == True:
+            self.__sa.off()
+            self.__sb.off()
+            self.__sc.off()
+            self.__sd.off()
+            self.__se.off()
+            self.__sf.off()
+            self.__sg.off()
+        else : 
+            self.__sa.on()
+            self.__sb.on()
+            self.__sc.on()
+            self.__sd.on()
+            self.__se.on()
+            self.__sf.on()
+            self.__sg.on()
     
     #Methode pour compter de 0 a 9
     def count_up(self):
@@ -495,88 +513,125 @@ class SevenSeg :
     def Flas0(self) : 
         while True:  
             self.Show0()   
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas1(self) :
         while True:  
             self.Show1()   
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas2(self) :
         while True:  
             self.Show2()   
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
+
     def Flas3(self) : 
         while True:
             self.Show3()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas4(self) :
         while True:
             self.Show4()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas5(self) :
         while True:
             self.Show5()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas6(self) :
         while True:
             self.Show6()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas7(self) :
         while True:
             self.Show7()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas8(self) :
         while True:
             self.Show8()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def Flas9(self) :
         while True:
             self.Show9()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def FlasA(self) :
         while True:
             self.ShowA()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def FlasB(self) :
         while True:
             self.ShowB()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def FlasC(self) :
         while True:
             self.ShowC()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def FlasD(self) :
         while True:
             self.ShowD()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def FlasE(self) :
         while True:
             self.ShowE()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
     def FlasF(self) :
         while True:
             self.ShowF()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
-    def FlasL(self) :
-        while True:
+    def FlasL(self):
+         for _ in range(5):
             self.ShowL()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)
 
-    def FlasH(self) :
-        while True:
+    def FlasH(self):
+        for _ in range(5):
             self.ShowH()
-            sleep(0.2)
+            sleep(0.5)
+            self.Clear()
+            sleep(0.5)

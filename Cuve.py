@@ -4,6 +4,7 @@ from signal import pause
 import SevenSeg
 
 class Cuve :
+    #Constructeur
     def __init__(self,pve,pvr,pcn0,pcn1,pcn2,pcn3,pa,pb,pc,pd,pe,pf,pg,ppd,type):
         self.__pvr = LED(pvr)
         self.__pve = LED(pve)
@@ -22,8 +23,15 @@ class Cuve :
         self.__ppd = ppd
         self.__type = type
 
+        #__afficheur de type SevenSeg(relation de composition avec la class SevenSeg)
         self.__afficheur = SevenSeg.SevenSeg(self.__pa,self.__pb,self.__pc,self.__pd,self.__pe,self.__pf,self.__pg,self.__ppd,self.__type)
         
+        #initialisation de l'affichage
+        self.__pvr.on()
+        self.alarmL()
+        self.__afficheur.ShowL()
+
+        # Configuration des evenement
         self.__pcn0.when_pressed = self.__check_buttons
         self.__pcn1.when_pressed = self.__check_buttons
         self.__pcn2.when_pressed = self.__check_buttons
@@ -35,15 +43,19 @@ class Cuve :
         self.__pcn3.when_released = self.__check_buttons  
 
 
+    #Methode pour le niveau de la cuve
     def __levelIndication(self,lvl):
         if lvl==4:
             self.__showLevel(lvl)
             self.__pvr.off()
             self.__pve.on()
+            self.alarmH()
         else :
             self.__showLevel(lvl)
             self.__pvr.on()
+            self.__pve.off()
     
+    #Methode pour l'affichage du niveau
     def __showLevel(self,lvl):
         if lvl == 1:
             self.__afficheur.Show1()
@@ -55,6 +67,9 @@ class Cuve :
             self.__afficheur.ShowH()
         elif lvl == 0:
             self.__afficheur.ShowL()
+            self.alarmL()
+            self.__afficheur.ShowL()
+
 
     def __check_buttons(self) :
 
@@ -76,3 +91,4 @@ class Cuve :
 
     def alarmH(self) :
         self.__afficheur.FlasH()
+
