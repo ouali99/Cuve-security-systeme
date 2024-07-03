@@ -630,7 +630,7 @@ class SevenSeg :
             sleep(0.5)
 
     def FlasH(self):
-        for _ in range(5):
+         for _ in range(5):
             self.ShowH()
             sleep(0.5)
             self.Clear()

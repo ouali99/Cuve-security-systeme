@@ -32,63 +32,61 @@ class Cuve :
         self.__afficheur.ShowL()
 
         # Configuration des evenement
-        self.__pcn0.when_pressed = self.__check_buttons
-        self.__pcn1.when_pressed = self.__check_buttons
-        self.__pcn2.when_pressed = self.__check_buttons
-        self.__pcn3.when_pressed = self.__check_buttons
+        self.__pcn0.when_pressed = self.__updateState
+        self.__pcn1.when_pressed = self.__updateState
+        self.__pcn2.when_pressed = self.__updateState
+        self.__pcn3.when_pressed = self.__updateState
 
-        self.__pcn0.when_released = self.__check_buttons
-        self.__pcn1.when_released = self.__check_buttons
-        self.__pcn2.when_released = self.__check_buttons
-        self.__pcn3.when_released = self.__check_buttons  
+        self.__pcn0.when_released = self.__updateState
+        self.__pcn1.when_released = self.__updateState
+        self.__pcn2.when_released = self.__updateState
+        self.__pcn3.when_released = self.__updateState  
 
 
     #Methode pour le niveau de la cuve
-    def __levelIndication(self,lvl):
-        if lvl==4:
-            self.__showLevel(lvl)
+    def __StateIndication(self,state):
+        if state==4:
+            self.__ShowState(state)
             self.__pvr.off()
             self.__pve.on()
             self.alarmH()
         else :
-            self.__showLevel(lvl)
+            self.__ShowState(state)
             self.__pvr.on()
-            self.__pve.off()
-    
-    #Methode pour l'affichage du niveau
-    def __showLevel(self,lvl):
-        if lvl == 1:
+
+    #Methode pour l'affichage du niveau(state)
+    def __ShowState(self,state):
+        if state == 1:
             self.__afficheur.Show1()
-        elif lvl == 2:
+        elif state == 2:
             self.__afficheur.Show2()
-        elif lvl == 3:
+        elif state == 3:
             self.__afficheur.Show3()
-        elif lvl == 4:
+        elif state == 4:
             self.__afficheur.ShowH()
-        elif lvl == 0:
+        elif state == 0:
             self.__afficheur.ShowL()
             self.alarmL()
             self.__afficheur.ShowL()
 
-
-    def __check_buttons(self) :
-
+    #methode pour gerer l'etat des boutons
+    def __updateState(self) :
         if self.__pcn0.is_pressed and self.__pcn1.is_pressed and self.__pcn2.is_pressed and self.__pcn3.is_pressed:
-            self.__levelIndication(4)
+            self.__StateIndication(4)
         elif self.__pcn0.is_pressed and self.__pcn1.is_pressed and self.__pcn2.is_pressed:
-            self.__levelIndication(3)
+            self.__StateIndication(3)
         elif self.__pcn0.is_pressed and self.__pcn1.is_pressed:
-            self.__levelIndication(2)
+            self.__StateIndication(2)
         elif self.__pcn0.is_pressed:
-            self.__levelIndication(1)
+            self.__StateIndication(1)
         else:
-            self.__levelIndication(0)
+            self.__StateIndication(0)            
             self.__pve.off()
             
     
     def alarmL(self) :
-        self.__afficheur.FlasL()
+        self.__afficheur.FlasL(True)
 
     def alarmH(self) :
-        self.__afficheur.FlasH()
+        self.__afficheur.FlasH(False)
 
